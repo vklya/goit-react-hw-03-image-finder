@@ -1,8 +1,8 @@
-import { Component } from "react";
+import { Component } from 'react';
 import { fetchImages } from "services/pixabay-api";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import GridLoader from 'react-spinners/GridLoader';
+import BarLoader from 'react-spinners/BarLoader';
 import css from './app.module.scss';
 import Searchbar from './Searchbar';
 import ImageGallery from "./ImageGallery";
@@ -57,7 +57,7 @@ export class App extends Component {
 
   showImage = ({ largeImageURL, tags }) => {
     this.setState({
-      largeImage: {largeImageURL, tags,},
+      largeImage: { largeImageURL, tags },
       openModal: true,
     });
     console.log(largeImageURL);
@@ -88,8 +88,8 @@ export class App extends Component {
         ) : (
           <Message text={"Let's find wonderful images"} smile={'✨'} />
         )}
-        {loading && <GridLoader color="#006c84" size={30} />}
-        {Boolean(items.length) && (
+        {loading && <BarLoader color= '#006c84' className={css.loader} />}
+        {!(items.length < 12) && (
           <Button onClick={loadMore} text={'Load more'} />
         )}
         {openModal && (
