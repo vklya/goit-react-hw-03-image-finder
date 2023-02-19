@@ -81,7 +81,6 @@ export class App extends Component {
     return (
       <div className={css.app}>
         <Searchbar onSubmit={searchImages} />
-        {loading && <GridLoader color={'#6eb5c0'} />}
         {items.length > 0 ? (
           <ImageGallery>
             <ImageGalleryItem data={items} showImage={showImage} />
@@ -89,7 +88,7 @@ export class App extends Component {
         ) : (
           <Message text={"Let's find wonderful images"} smile={'✨'} />
         )}
-
+        {loading && <GridLoader color="#006c84" size={30} />}
         {Boolean(items.length) && (
           <Button onClick={loadMore} text={'Load more'} />
         )}
@@ -99,7 +98,11 @@ export class App extends Component {
           </Modal>
         )}
         {error && <Message text={error} smile={'❗'} />}
-        <ToastContainer autoClose="3000" theme="colored" position="bottom-right" />
+        <ToastContainer
+          autoClose="3000"
+          theme="colored"
+          position="bottom-right"
+        />
       </div>
     );
   }
